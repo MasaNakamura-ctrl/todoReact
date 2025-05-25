@@ -25,23 +25,23 @@ export const Todo = () => {
               </li>
             )
           })}
-      </ul>
-    </div>
-    <div className="incomplete-area complete-area">
-      <p className="Title">演奏した曲</p>
-      <ul id="complete-list">
-        {completeTodos.map((todo) => {
-          return(
-            <li key={todo}>
-              <div className="list-row">
-                <p className="todo-item">{todo}</p>
-                <button>直す</button>
-              </div>
-            </li>
-            )
-          })}
-      </ul>
-    </div>
+        </ul>
+      </div>
+      <div className="incomplete-area complete-area">
+        <p className="Title">演奏した曲</p>
+        <ul id="complete-list">
+          {completeTodos.map((todo) => {
+            return(
+              <li key={todo}>
+                <div className="list-row">
+                  <p className="todo-item">{todo}</p>
+                  <button>直す</button>
+                </div>
+              </li>
+              )
+            })}
+        </ul>
+      </div>
     </>
   )
 }
