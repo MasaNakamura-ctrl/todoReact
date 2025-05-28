@@ -2,14 +2,22 @@ import { useState } from 'react'
 import './Todo.css'
 
 export const Todo = () => {
+  const [todoText, setTodoText] = useState("");
   const [incompleteTodos, setIncompleteTodos] = useState(["演奏予定の曲1","演奏予定の曲2"]);
   const [completeTodos, setCompleteToodos] = useState(["演奏した曲1","演奏した曲2"]);
+  const onChangeTodoText = (event) => setTodoText(event.target.value);
+  const onClickAdd = () => {
+    if (todoText==="") return;
+    const newTodos = [...incompleteTodos, todoText];
+    setIncompleteTodos(newTodos);
+    setTodoText("");
+  }
   return (
     <>
       <h1>マダシキ</h1>
       <div class="input-area">
-        <input id="addText" placeholder="演奏曲を入力"/>
-        <button id="addButton">追加</button>
+        <input id="addText" placeholder="演奏曲を入力" value={todoText} onChange={onChangeTodoText}/>
+        <button id="addButton" onClick={onClickAdd}>追加</button>
       </div>
       <div className="incomplete-area">
         <p className="Title">演奏予定</p>
