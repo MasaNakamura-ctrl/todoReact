@@ -3,8 +3,8 @@ import './Todo.css'
 
 export const Todo = () => {
   const [todoText, setTodoText] = useState("");
-  const [incompleteTodos, setIncompleteTodos] = useState(["演奏予定の曲1","演奏予定の曲2"]);
-  const [completeTodos, setCompleteToodos] = useState(["演奏した曲1","演奏した曲2"]);
+  const [incompleteTodos, setIncompleteTodos] = useState([]);
+  const [completeTodos, setCompleteToodos] = useState([]);
   const onChangeTodoText = (event) => setTodoText(event.target.value);
   const onClickAdd = () => {
     if (todoText==="") return;
@@ -16,6 +16,22 @@ export const Todo = () => {
     const newTodos = [...incompleteTodos];
     newTodos.splice(index, 1);
     setIncompleteTodos(newTodos);
+  }
+  const onClickComplete = (index) => {
+    const newIncompleteTodos = [...incompleteTodos];
+    newIncompleteTodos.splice(index, 1);
+
+    const newCompleteTodos = [...completeTodos, incompleteTodos[index]];
+    setIncompleteTodos(newIncompleteTodos);
+    setCompleteToodos(newCompleteTodos);
+  }
+  const onClickBack = (index) => {
+    const newCompleteTodos = [...completeTodos];
+    newCompleteTodos.splice(index, 1);
+
+    const newIncompleteTodos = [...incompleteTodos, completeTodos[index]];
+    setIncompleteTodos(newIncompleteTodos);
+    setCompleteToodos(newCompleteTodos);
   }
   return (
     <>
@@ -32,7 +48,7 @@ export const Todo = () => {
               <li key={todo}>
                 <div className="list-row">
                   <p className="todo-item">{todo}</p>
-                  <button className="complete-button">終ふ</button>
+                  <button className="complete-button" onClick={() => onClickComplete(index)}>終ふ</button>
                   <button className="delete-button" onClick={() => onClickDelete(index)}>消つ</button>
                 </div>
               </li>
@@ -43,12 +59,12 @@ export const Todo = () => {
       <div className="incomplete-area complete-area">
         <p className="Title">演奏した曲</p>
         <ul id="complete-list">
-          {completeTodos.map((todo) => {
+          {completeTodos.map((todo, index) => {
             return(
               <li key={todo}>
                 <div className="list-row">
                   <p className="todo-item">{todo}</p>
-                  <button>直す</button>
+                  <button onClick={() => onClickBack(index)}>直す</button>
                 </div>
               </li>
               )
