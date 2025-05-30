@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import './Todo.css'
+import { InputToDo } from './components/InputToDo';
+import { IncompleteToDo } from './components/IncompleteToDo';
+import { CompleteToDo } from './components/CompleteToDo';
 
 export const Todo = () => {
   const [todoText, setTodoText] = useState("");
@@ -36,41 +39,16 @@ export const Todo = () => {
   return (
     <>
       <h1>マダシキ</h1>
-      <div class="input-area">
-        <input id="addText" placeholder="演奏曲を入力" value={todoText} onChange={onChangeTodoText}/>
-        <button id="addButton" onClick={onClickAdd}>追加</button>
-      </div>
-      <div className="incomplete-area">
-        <p className="Title">演奏予定</p>
-        <ul id="incomplete-list">
-          {incompleteTodos.map((todo, index) => {
-            return(
-              <li key={todo}>
-                <div className="list-row">
-                  <p className="todo-item">{todo}</p>
-                  <button className="complete-button" onClick={() => onClickComplete(index)}>終ふ</button>
-                  <button className="delete-button" onClick={() => onClickDelete(index)}>消つ</button>
-                </div>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-      <div className="incomplete-area complete-area">
-        <p className="Title">演奏した曲</p>
-        <ul id="complete-list">
-          {completeTodos.map((todo, index) => {
-            return(
-              <li key={todo}>
-                <div className="list-row">
-                  <p className="todo-item">{todo}</p>
-                  <button onClick={() => onClickBack(index)}>直す</button>
-                </div>
-              </li>
-              )
-            })}
-        </ul>
-      </div>
+      <InputToDo
+      todoText={todoText}
+      onChange={onChangeTodoText}
+      onClick={onClickAdd}/>
+      <IncompleteToDo
+      todos={incompleteTodos}
+      onClickComplete={onClickComplete}
+      onClickDelete={onClickDelete}
+      />
+      <CompleteToDo todos={completeTodos} onClickBack={onClickBack}/>
     </>
   )
 }
