@@ -5,16 +5,6 @@ body{
   display: inline-block;
 }
 
-.input-area{
-  background-color: #D0D8DA;
-  border: 1px solid #40403E;
-  width:400px;
-  height:30px;
-  margin:8px;
-  padding:8px;
-  border-radius:8px;
-}
-
 input{
   border-radius:8px;
   border:solid #40403E;
@@ -32,19 +22,6 @@ button:hover{
   background-color: #79A89A;
   color:#FFF;
   cursor:pointer;
-}
-
-.incomplete-area{
-  border: 1px solid #40403E;
-  width:400px;
-  min-height: 200px;
-  margin:8px;
-  padding:8px;
-  border-radius:8px;
-}
-
-.complete-area{
-  background-color: #D0D8DA;
 }
 
 .Title{
